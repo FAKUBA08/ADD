@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="displayValue">
+  <button onclick="show()" >TAP ME</button>
+  <button onclick="clearBtn()" >delete</button>
+  <div id="display"></div>
+</body>
+<script>
+  let displayValue=document.getElementById('displayValue')
+  let display=document.getElementById('display')
+  // let clear=document.getElementById('clear')
+  let arr=[]
+  function show(){
+  if (arr.includes(displayValue.value)) {
+    alert('exixted already')
+  }else{
+    arr.push(displayValue.value)
+    let index=arr.indexOf(displayValue.value)
+    displayValue.value=''
+    show3()
+    console.log(arr);
+    
+  }
+  }
+  function clearBtn() {
+    if (arr.includes(displayValue.value)) {
+    let clear=arr.indexOf(displayValue.value)
+    arr.splice(clear,1)
+    show3()
+    // display.innerHTML=arr.join('')
+    console.log(arr);
+    }else{
+      alert('recheck your value')
+    }
+    
+  }
+ function show3(){
+  display.innerHTML=''
+  for (let index = 0; index < arr.length; index++) {
+      display.innerHTML+=`<h3>${arr[index]}${' '}<button onclick="deleteBtn(${index})">delete</button></h3>`
+      //  display.innerHTML=arr.join(' ')
+     }
+ }
+ show3()
+ function deleteBtn(index){
+  arr.splice(index,1)
+  display.innerHTML=''
+  show3()
+  console.log(arr);
+ }
+</script>
+</html>
